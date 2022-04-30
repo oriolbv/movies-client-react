@@ -1,11 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
 import Root from './components/Root';
 
-function App() {
-  return (
-    <Root/>
-  );
+class App extends Component {
+  render() {
+    return (<Root/>);
+  }
 }
 
 export default App;

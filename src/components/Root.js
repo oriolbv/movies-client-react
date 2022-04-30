@@ -1,14 +1,14 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import List from './List';
 import Detail from './Detail';
 
 const Root = () => (
 	<BrowserRouter>
-		<div>
-			<Route exact path="/" component={List}/>
-			<Route exact path="/:id" component={Detail}/>
-		</div>
+		<Routes>
+			<Route exact path="/" element={<List />}/>
+			<Route exact path="/:id" element={<Detail />}/>
+		</Routes>
 	</BrowserRouter>
 );
 
