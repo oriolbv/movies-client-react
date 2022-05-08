@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { getVideoDetail } from '../api';
-import Loading from './Loading';
-import Video from './Video';
+import { getVideoDetail } from '../../api';
+import Loading from '../Loading';
+import Video from '../Video';
 import { useParams } from 'react-router-dom';
 
 class Detail extends Component {

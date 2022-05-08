@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import List from './List';
-import Detail from './Detail';
+import Detail from './modals/Detail';
 
 const Root = () => (
 	<BrowserRouter>
