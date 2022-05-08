@@ -58,6 +58,15 @@ export const getVideos = () => new Promise((resolve, reject) => {
 	},FAKE_DELAY);
 });
 
+export const getMovies = async () => {
+	try{
+        const response = await fetch('https://api.themoviedb.org/3/search/movie?api_key=b89213a613540e087a3818b15bcecaa5&language=en-US&query=sonic&page=1&include_adult=false');
+        return await response.json();
+    }catch(error) {
+        return [];
+    }
+}
+
 // Return a description from server
 const getDescription = async () => {
 	try{

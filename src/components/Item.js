@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 class Item extends PureComponent{
 	render(){
-		const { id, thumbnail, title } = this.props.data;
+		const { id, poster_path, title } = this.props.data;
 		return (<Link className="grid-item-link" to={`/${id}`}>
 			<div className="grid-item" >
-				<img className="preview-image" src={thumbnail} alt={title}/>
+				<img className="preview-image" src={`https://image.tmdb.org/t/p/original${poster_path}`}/>
 				<div className="preview-title">{title}</div>
 			</div>
 		</Link>);

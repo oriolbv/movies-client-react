@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getVideos } from '../api';
+import { getVideos, getMovies } from '../api';
 import Loading from './Loading';
 import Item from './Item';
 import Header from './Header';
@@ -27,7 +27,7 @@ class List extends Component {
     //   .catch(error => this.setState({ error, isLoading: false }));
     
     try{
-      const videos = await getVideos();
+      const videos = await getMovies();
       this.setState({ videos , isLoading: false });
     } catch(error){
       this.setState({ error, isLoading: false });
@@ -65,7 +65,7 @@ class List extends Component {
         <div className="container">
           <div className="grid-container">
               {
-                videos && videos.map((video,i) => {
+                videos && videos.results.map((video,i) => {
                   return (<Item key={i} data={video}/>)
                 })
               }
