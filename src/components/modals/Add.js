@@ -30,6 +30,7 @@ class Add extends Component {
     }
 
     validation(app){
+        return true;
         if(app.title.length > 0 &&  app.url.length > 0 && app.description.length > 2){
             return true;
         } else {
@@ -39,15 +40,12 @@ class Add extends Component {
     handleSubmit(e){
         e.preventDefault();
         const { onClose } = this.props;
-        const token = parseYoutubeUrl(this.state.url || '');
-        if(this.validation(this.state) && token){
+        const token = '';//parseYoutubeUrl(this.state.url || '');
+        if(this.validation(this.state)){
             this.setState({showSending:true})
             addVideo({
                 title: this.state.title,
-                description: this.state.description,
-                url: this.state.url,
-                thumbnail: `https://img.youtube.com/vi/${token}/maxresdefault.jpg`,
-                embed: `https://www.youtube.com/embed/${token}`
+                poster_path: '12345',
             }).then(onClose(true));
         }else{
             this.setState({
@@ -67,11 +65,11 @@ class Add extends Component {
                 { hasError && (<div className="error"> Some fields are empty or contain an wrong values. </div>) }
                 <form>
                     <label>Título</label>
-                    <input type="text" value={title} onChange={this.handleChange("title")} minLength="3" maxLength="200"  required/>
+                    <input type="text" value={title} onChange={this.handleChange("title")} minLength="3" maxLength="200"/>
                     <label>Url</label>
-                    <input type="text" value={url} onChange={this.handleChange("url")} minLength="3" maxLength="200"  required/>
+                    <input type="text" value={url} onChange={this.handleChange("url")} minLength="3" maxLength="200"/>
                     <label>Descripción</label>
-                    <textarea value={description} onChange={this.handleChange("description")} required/>
+                    <textarea value={description} onChange={this.handleChange("description")}/>
                     <input type="submit" onClick={this.handleSubmit} value="Submit" disabled={showSending}/>
                 </form>
               </div>

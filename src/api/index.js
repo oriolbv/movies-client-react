@@ -42,14 +42,29 @@ const FAKE_DATA = [
 		embed: 'https://www.youtube.com/embed/lttZCIin4HM',
 		thumbnail: 'https://img.youtube.com/vi/lttZCIin4HM/maxresdefault.jpg',
 	}
-]; 
+];
+
+const MOVIES_DATA = {
+	results: [
+		{	
+			id:0,
+			title:'¿Qué es CodelyTV? 🍄🔝 - Formación para programadores y divulgación del mundo del desarrollo',
+			poster_path:'pMQd2DazTc',
+		},
+		{	
+			id:2,
+			title:'¿Qué es CodelyTV? 🍄🔝 - Formación para programadores y divulgación del mundo del desarrollo',
+			poster_path:'pMQd2DazTc',
+		}
+	]
+};
 
 export const addVideo = (newVideo) => new Promise((resolve, reject) => {	
 	setTimeout(() => { 
-		newVideo.id = FAKE_DATA.length + 1;
-		FAKE_DATA.push(newVideo);
+		newVideo.id = MOVIES_DATA.results.length + 1;
+		MOVIES_DATA.results.push(newVideo);
 		return resolve({ok:1});
-	},FAKE_DELAY);
+	},MOVIES_DATA);
 });
  
 export const getVideos = () => new Promise((resolve, reject) => {	
@@ -58,15 +73,24 @@ export const getVideos = () => new Promise((resolve, reject) => {
 	},FAKE_DELAY);
 });
 
+// export const getMovies = () => new Promise((resolve, reject) =>  {
+// 	setTimeout(() => { 
+// 		return resolve(MOVIES_DATA);
+// 	},MOVIES_DATA);
+// });
+
 export const getMovies = async () => {
 	try{
-        const response = await fetch('https://api.themoviedb.org/3/search/movie?api_key=b89213a613540e087a3818b15bcecaa5&language=en-US&query=sonic&page=1&include_adult=false');
-        return await response.json();
+        // const response = await fetch('https://api.themoviedb.org/3/search/movie?api_key=b89213a613540e087a3818b15bcecaa5&language=en-US&query=sonic&page=1&include_adult=false');
+		// return await response.json();
+		return MOVIES_DATA;
     }catch(error) {
         return [];
     }
 }
-
+export const getMovies2 = () => {
+	return MOVIES_DATA;
+}
 // Return a description from server
 const getDescription = async () => {
 	try{

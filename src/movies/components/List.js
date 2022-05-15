@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { getVideos, getMovies } from '../api';
-import Loading from './Loading';
-import Item from './Item';
-import Header from './Header';
-import Add from './modals/Add';
+import { getVideos, getMovies, getMovies2 } from '../../api';
+import Loading from '../../components/Loading';
+import Item from '../../components/Item';
+import Header from '../../components/Header';
+import Add from '../../components/modals/Add';
 
 class List extends Component {
   constructor(props) {
@@ -22,16 +22,19 @@ class List extends Component {
     this.setState({ isLoading: true });
     
     // Promises example  
-    // getVideos()
+    // getMovies()
     //   .then(data => this.setState({ videos: data, isLoading: false }))
     //   .catch(error => this.setState({ error, isLoading: false }));
     
     try{
       const videos = await getMovies();
-      this.setState({ videos , isLoading: false });
+      this.setState({ videos:videos , isLoading: false });
     } catch(error){
       this.setState({ error, isLoading: false });
     }
+
+    //const videos = getMovies2();
+    //this.setState({ videos: videos , isLoading: false });
     return true;
   }
   handleAdd(e) {
@@ -43,9 +46,11 @@ class List extends Component {
     return () => {
       if(reload){
         this.setState({ isLoading: true , showAdd:false});
-        getVideos().then(data => this
-          .setState({ videos: data, isLoading: false, showAdd:false }))
-          .catch(error => this.setState({ error, isLoading: false, showAdd:false }));
+        const videos = getMovies2();
+        this.setState({ videos: videos , isLoading: false, showAdd: false });
+        // getVideos().then(data => this
+        //   .setState({ videos: data, isLoading: false, showAdd:false }))
+        //   .catch(error => this.setState({ error, isLoading: false, showAdd:false }));
       } else {
         this.setState({ showAdd: false });
       }
