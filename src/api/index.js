@@ -48,12 +48,12 @@ const MOVIES_DATA = {
 	results: [
 		{	
 			id:0,
-			title:'¿Qué es CodelyTV? 🍄🔝 - Formación para programadores y divulgación del mundo del desarrollo',
+			title:'Movie 1',
 			poster_path:'pMQd2DazTc',
 		},
 		{	
 			id:2,
-			title:'¿Qué es CodelyTV? 🍄🔝 - Formación para programadores y divulgación del mundo del desarrollo',
+			title:'Movie 2',
 			poster_path:'pMQd2DazTc',
 		}
 	]
