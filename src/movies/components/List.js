@@ -4,32 +4,14 @@ import Loading from '../../components/Loading';
 import Item from '../../components/Item';
 import Header from '../../components/Header';
 import Add from '../../components/modals/Add';
+import useDataFetching from '../../hooks/useDataFetching';
 
 function List (props) {
-    const [isLoading,setIsLoading] = useState(false);
-    const [videos,setVideos] = useState(null);
-    const [error,setError] = useState(null);
-    const [showAdd,setShowAdd] = useState(false);
-
-    const loadAsyncData = async () => {
-        setIsLoading(true);
-
-        try {
-            const videos = await getMovies();
-            setVideos(videos);
-            setIsLoading(false);
-        } catch(error){
-            setError(error);
-            setIsLoading(false);
-        }
-        
-      }
+    const [showAdd, setShowAdd] = useState(false);
 
     // Equivalent to component did mount
-    useEffect(() => {
-        loadAsyncData();
-        console.log('component mounted!')
-    }, []);
+    const [isLoading, error, videos] =
+      useDataFetching();
 
 
     const handleAdd = (e) => {
@@ -40,12 +22,7 @@ function List (props) {
     // Partial function
     const handleCloseAdd = (reload) => {
         return () => {
-            if (reload){
-                loadAsyncData();
-                setShowAdd(false);
-            } else {
-                setShowAdd(false);
-            }
+            setShowAdd(false);
         }
     }
     
